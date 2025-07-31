@@ -8,5 +8,8 @@
     "name": "Name",
     "message": "Message",
     "send": "Send",
-    "zł": "PLN"
+    "zł": "PLN",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
 }

@@ -8,5 +8,8 @@
     "name": "Imię i nazwisko",
     "message": "Wiadomość",
     "send": "Wyślij",
-    "zł": "zł"
+    "zł": "zł",
+    "login": "Zaloguj się",
+    "register": "Rejestracja",
+    "logout": "Wyloguj się"
 }

@@ -22,7 +22,7 @@ const Home: React.FC<HomeProps> = ({ language }) => {
         <Container maxWidth={false} sx={{ mt: 6 }}>
             <Grid container spacing={3}>
                 {products.map((product: Product) => (
-                    <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }} key={product.id}>
+                    <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 3, xxl: 2 }} key={product.id}>
                         <ProductCard product={product} />
                     </Grid>
                 ))}
