@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../store';
+import type { RootState } from '../store/types';
 import { Container, Typography, Card, CardContent } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 

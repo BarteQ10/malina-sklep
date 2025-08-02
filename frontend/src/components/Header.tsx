@@ -14,9 +14,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import type { RootState, AppDispatch } from '../store';
-import { logout } from '../store/authSlice';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+//import { logout } from '../store/authSlice';
 
 type HeaderProps = {
     mode: 'light' | 'dark';
@@ -32,39 +31,47 @@ const Header: React.FC<HeaderProps> = ({
     handleLanguageChange,
 }) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const user = useSelector((state: RootState) => state.auth.user);
+    const user = useAppSelector((state) => state.auth.user);
 
     const handleLogout = () => {
-        dispatch(logout());
+        //dispatch(logout());
         navigate('/');
     };
 
     return (
         <AppBar position="static">
             <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" sx={{ flexGrow: 1 }}>
                     {t('title')}
                 </Typography>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                     <Button color="inherit" component={Link} to="/">
-                        Home
+                        {t('home')}
                     </Button>
                     <Button color="inherit" component={Link} to="/contact">
                         {t('contact')}
                     </Button>
 
-                    {/* Language Selector */}
                     <Select
                         value={language}
                         onChange={(e) => handleLanguageChange(e.target.value as 'pl' | 'en')}
                         size="small"
+                        variant="outlined"
                         sx={{
                             color: 'white',
-                            '& .MuiOutlinedInput-notchedOutline': { borderColor: 'white' },
-                            '& .MuiSvgIcon-root': { color: 'white' },
+                            minWidth: 80,
+                            '& .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'white',
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'white',
+                            },
+                            '& .MuiSvgIcon-root': {
+                                color: 'white',
+                            },
                         }}
                     >
                         <MenuItem value="pl">
@@ -77,26 +84,26 @@ const Header: React.FC<HeaderProps> = ({
                         </MenuItem>
                     </Select>
 
-                    {/* Theme Toggle */}
                     <IconButton onClick={toggleMode} color="inherit">
                         {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                     </IconButton>
 
-                    {/* Auth Buttons */}
                     {!user ? (
                         <>
                             <Button color="inherit" component={Link} to="/login">
-                                {t('login') ?? 'Login'}
+                                {t('login')}
                             </Button>
                             <Button color="inherit" component={Link} to="/register">
-                                {t('register') ?? 'Register'}
+                                {t('register')}
                             </Button>
                         </>
                     ) : (
                         <>
-                            <Typography variant="body1">{user.name || user.email}</Typography>
+                            <Typography variant="body1">
+                                {user.name || user.email}
+                            </Typography>
                             <Button color="inherit" onClick={handleLogout}>
-                                {t('logout') ?? 'Logout'}
+                                {t('logout')}
                             </Button>
                         </>
                     )}

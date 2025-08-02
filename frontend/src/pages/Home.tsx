@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import type { RootState, AppDispatch } from '../store';
-import { fetchProducts } from '../store/productSlice';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { fetchProducts } from '../store/products/productThunks';
 import type { Product } from '../types/product';
-import type { HomeProps } from '../types/components'; // Assuming you have a types file for props
+import type { HomeProps } from '../types/components';
 import ProductCard from '../components/ProductCard';
-import {
-    Container,
-    Grid,
-} from '@mui/material';
-
+import { Container, Grid } from '@mui/material';
 
 const Home: React.FC<HomeProps> = ({ language }) => {
-    const dispatch = useDispatch<AppDispatch>();
-    const products = useSelector((state: RootState) => state.products);
+    const dispatch = useAppDispatch();
+    const products = useAppSelector((state) => state.products);
+
     useEffect(() => {
         dispatch(fetchProducts(language));
     }, [dispatch, language]);

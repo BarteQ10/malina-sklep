@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Box, Alert } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../store/authSlice';
-import type { RootState, AppDispatch } from '../store';
+import { registerUser } from '../store/auth/authThunks';
+import type { RootState, AppDispatch } from '../store/types';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterPage: React.FC = () => {
