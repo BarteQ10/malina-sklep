@@ -5,7 +5,6 @@ import { RegisterRoutes } from './routes/routes';
 import * as swaggerJson from './swagger.json';
 import { Request, Response, NextFunction } from 'express';
 import { HttpError } from './utils/errors';
-import { upload } from './middleware/upload';
 import path from 'path';
 
 
