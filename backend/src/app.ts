@@ -5,11 +5,18 @@ import { RegisterRoutes } from './routes/routes';
 import * as swaggerJson from './swagger.json';
 import { Request, Response, NextFunction } from 'express';
 import { HttpError } from './utils/errors';
+import { upload } from './middleware/upload';
+import path from 'path';
+
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
+
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerJson));
 
 // Register tsoa routes
